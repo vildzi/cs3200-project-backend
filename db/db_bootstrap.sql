@@ -95,7 +95,9 @@ CREATE TABLE Employees (
     direct_deposit_account_num varchar(12),
     email varchar(100),
     phone varchar(25),
-    date_of_birth date
+    date_of_birth date,
+    first_name varchar(25) not null,
+    last_name varchar(25) not null
 );
 
 CREATE TABLE EmployeeShifts (

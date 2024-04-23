@@ -50,3 +50,4 @@ insert into BookLoans (loan_id, book_id, user_id, loan_start, loan_end) values (
 insert into BookLoans (loan_id, book_id, user_id, loan_start, loan_end) values (50, 50, 50, '2024-04-25 23:53:36', '2024-05-11 13:01:46');
 insert into BookLoans (loan_id, book_id, user_id, loan_start, loan_end) values (51, 50, 37, '2024-03-25 23:53:36', '2024-04-11 13:01:46');
 insert into BookLoans (loan_id, book_id, user_id, loan_start, loan_end) values (52, 50, 2, '2024-03-24 23:53:36', '2024-04-11 13:01:46');
+insert into BookLoans (loan_id, book_id, user_id, loan_start, loan_end) values (53, 50, 2, '2024-03-24 23:53:36', '2024-04-11 13:01:46');

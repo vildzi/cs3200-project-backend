@@ -16,6 +16,7 @@ def create_loan():
     user_id = request.form.get('user_id')
     cursor = db.get_db().cursor()
     cursor.execute('insert into BookLoans (book_id, user_id, loan_start, loan_end) values (%s, %s, now(), %s)', (book_id, user_id, end_date))
+    db.get_db().commit()
     return jsonify({"success": True})
 
 @loans.route('/overdue', methods=['GET'])

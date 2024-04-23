@@ -12,5 +12,5 @@ def get_members():
 @members.route('/<member_id>/loans')
 def get_member_loans(member_id):
     cursor = db.get_db().cursor()
-    cursor.execute('select * from BookLoans bl join Books b on b.book_id = bl.book_id where user_id = %s', member_id)
+    cursor.execute('select * from BookLoans bl join Books b on b.book_id = bl.book_id where user_id = %s and bl.return_date is null', member_id)
     return convert_db_to_json(cursor)
