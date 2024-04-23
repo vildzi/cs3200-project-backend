@@ -3,7 +3,7 @@
 -- Create a new database.  You can change the name later.  You'll
 -- need this name in the FLASK API file(s),  the AppSmith 
 -- data source creation.
-create database libmanagement;
+create database if not exists libmanagement;
 
 -- Via the Docker Compose file, a special user called webapp will 
 -- be created in MySQL. We are going to grant that user 
@@ -22,14 +22,17 @@ use libmanagement;
 drop table if exists BookLoans cascade;
 drop table if exists Users cascade;
 drop table if exists BookGenres cascade;
+drop table if exists BookLocations cascade;
 drop table if exists Books cascade;
 drop table if exists Genres cascade;
-drop table if exists BookLocations cascade;
-drop table if exists Employees cascade;
 drop table if exists EmployeeShifts cascade;
+drop table if exists Employees cascade;
 
 CREATE TABLE Users (
     user_id int primary key auto_increment,
+
+    first_name varchar(50) not null,
+    last_name varchar(50) not null,
 
     email varchar(100) not null,
     phone varchar(25),
@@ -38,7 +41,7 @@ CREATE TABLE Users (
     address_street varchar(50) not null,
     address_street_2 varchar(50) default null,
     address_city varchar(25) not null,
-    address_zipcode int
+    address_zipcode varchar(25)
 );
 
 CREATE TABLE Genres (
@@ -49,11 +52,12 @@ CREATE TABLE Genres (
 CREATE TABLE Books (
     book_id int primary key auto_increment,
     title varchar(200) not null,
+    isbn varchar(13) not null,
     description text,
     author text not null,
     physical_condition int,
     total_stock_count int not null default 0,
-    rating int not null default 0
+    rating double not null default 0
 );
 
 CREATE TABLE BookGenres (
@@ -91,7 +95,7 @@ CREATE TABLE Employees (
     direct_deposit_account_num varchar(12),
     email varchar(100),
     phone varchar(25),
-    age int
+    date_of_birth date
 );
 
 CREATE TABLE EmployeeShifts (
@@ -101,31 +105,3 @@ CREATE TABLE EmployeeShifts (
     clock_in_datetime datetime not null default now(),
     clock_out_datetime datetime default null
 );
-
--- Add sample data. 
-INSERT INTO Users (email, phone, address_street, address_city, address_zipcode) VALUES (
-    'test@example.com', '+11234567890', '123 test street', 'test city', '10010'
-);
-
-INSERT INTO Employees (direct_deposit_routing_num, direct_deposit_account_num, email, phone, age) VALUES (
-    '123456789', '123456789123', 'employee1@example.com', '+11234567891', 21
-);
-
-INSERT INTO EmployeeShifts (employee_id) VALUES (1);
-
-INSERT INTO Books (title, description, author, physical_condition, total_stock_count) VALUES (
-    'sample book 1', 'A book to give an example of how the library management system works', 'test author', 100, 15
-);
-
-INSERT INTO BookLocations (book_id, row_num, shelf_num) VALUES (1, 12, 456);
-
-INSERT INTO BookLoans (book_id, user_id) VALUES (
-    1, 1
-);
-
-INSERT INTO Genres (genre_name) VALUES ('Fiction');
-INSERT INTO Genres (genre_name) VALUES ('Non-Fiction');
-INSERT INTO Genres (genre_name) VALUES ('Sci-fi');
-
-INSERT INTO BookGenres (book_id, genre_id) VALUES (1, 1);
-INSERT INTO BookGenres (book_id, genre_id) VALUES (1, 2);

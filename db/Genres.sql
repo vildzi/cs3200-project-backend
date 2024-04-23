@@ -1,0 +1,10 @@
+insert into Genres (genre_id, genre_name) values (1, 'Fiction');
+insert into Genres (genre_id, genre_name) values (2, 'Non-Fiction');
+insert into Genres (genre_id, genre_name) values (3, 'Mystery');
+insert into Genres (genre_id, genre_name) values (4, 'Thriller');
+insert into Genres (genre_id, genre_name) values (5, 'Romance');
+insert into Genres (genre_id, genre_name) values (6, 'Science Fiction');
+insert into Genres (genre_id, genre_name) values (7, 'Fantasy');
+insert into Genres (genre_id, genre_name) values (8, 'Historical Fiction');
+insert into Genres (genre_id, genre_name) values (9, 'Biography');
+insert into Genres (genre_id, genre_name) values (10, 'Self-Help');
